@@ -1,0 +1,41 @@
+<div class="window" id="setup" #setupWindow>
+  <!-- Window Header -->
+  <div id="setupheader" class="window_header" #windowHeader>
+    <span class="title">o hello there …</span>
+    <!-- <button class="close-btn" (click)="closeWindow()">×</button> -->
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <div class="navigation">
+    <h1>999<br>999<br>999<br>9999</h1>
+    <div>
+      <div class="w3-bar w3-black"></div>
+      <img src="" alt="">
+    </div>
+  </div>
+
+  <!-- Dynamic Content Area -->
+  <div class="content">
+    
+    <!-- Home Tab -->
+    <div *ngIf="activeTab === 'home'" class="tab">
+      <h2>welcome to the 9×13 installer wizard</h2>
+      <br>
+      <p>this wizard will guide you through your experience on 9×13.</p>
+      <br>
+      <p>9×13 is intended for adults only.<br>  9×13 uses javascript & is not mobile friendly (yet!)</p>
+      <br>
+      <p>click NEXT to continue...</p>
+      <br>
+      <button class="nextbutton" (click)="setActiveTab('next')">next</button>
+    </div>
+
+    <!-- Next Tab -->
+    <div *ngIf="activeTab === 'next'" class="tab">
+      <h2>who</h2>
+      <br>
+      <h3>aa</h3>
+    </div>
+
+  </div>
+</div>
