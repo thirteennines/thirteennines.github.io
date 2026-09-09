@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    image-rendering: pixelated;
+}
+.window {
+    position: absolute;
+    left: 40%;
+    top: 10%;
+    width: 50vw;
+    height: 60vh;
+    min-width: 20vw; 
+    min-height: 15vh;
+    max-width: 90vw; 
+    max-height: 90vh; 
+    resize: both; 
+    overflow: hidden; /* FIX: Prevents container from double-scrolling or clipping your crisp pixel borders */
+    flex-direction: column;
+    background: linear-gradient(0deg, rgb(117, 167, 141), rgb(100, 148, 123) 100%);
+    border-radius: 0.625rem;
+    display: flex;
+    transition: opacity 0.2s ease-out;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #151615;
+    animation: openWindow .1s ease-in forwards;
+}
+
+
+.windowheader {
+    display: flex;
+    width: 100%;
+    padding: 1rem;
+    padding-bottom: .5rem;
+    color: #DCF2E6;
+    cursor: move;
+}
+
+.close-btn {
+    font-size: 1.6rem;
+    background-color: transparent;
+    color:  #DCF2E6;
+    cursor: pointer;
+    float: right;
+    justify-self: end;
+    margin: 1px;
+    margin-left: auto;
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    padding: auto;
+    border: none;
+}
+
+.close-btn:hover {
+    color: #ceff5c;
+    transition: all 0.2s;
+}
+
+.navigation {
+    padding: 4%;
+    border-right: 0.0625rem solid #000;
+    overflow-y: auto; 
+    flex-shrink: 1;
+}
+
+.navigation h1 {
+    text-align: center;
+    margin-bottom: 10%;
+}
+
+.nextbutton {
+    border: #15161580;
+    color: #DCF2E6;
+    background-color: rgb(117, 167, 141);
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    padding: 0.5rem;
+     display: block;
+     margin-left: auto;
+}
+
+.nextbutton:hover {
+    background-color: rgb(100, 148, 123);
+    box-shadow: 5px 2.5px #CEF8B1;
+}
+
+.nextbutton:active {
+    background-color:rgb(78, 126, 101);
+    box-shadow: 5px 2.5px #15161580, 5px 2.5px #15161580 inset;
+}
+
+.shh {
+    display: none;
+}
+
+.content {
+    overflow-y: auto; 
+    overflow-x: hidden;
+    background-color: #DCF2E6;
+    border-radius: 0.25rem;
+    flex-grow: 1; 
+    flex-shrink: 1; 
+    min-height: 0; 
+    width: calc(100% - 10px); 
+    margin: 0 auto 5px auto; 
+    box-sizing: border-box; 
+}
+
+.tab {
+    display: block;
+    margin-bottom: 1em;
+}
+
+@media (max-width: 40rem) {
+    .window {
+        left: 5vh;
+        top: 5vh;
+        width: 80vw;
+    }
+    .navigation {
+        padding: 5%;
+    }
+    .content {
+        padding: 5%;
+    }
+    .navigation h1 {
+        font-size: 1.5rem;
+    }
+}
+
+:host {
+    display: contents;
+}
+
+windowtitle,
+windowcontent {
+    display: contents;
+}
+
+:host ::ng-deep .nextbutton {
+    color: #DCF2E6;
+    border:  #DCFFC4;
+    background-color: rgb(117, 167, 141);
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+:host ::ng-deep .nextbutton:hover {
+    color: #CEF8B1;
+    background-color: rgb(100, 148, 123);
+    box-shadow: 5px 2.5px #ceff5c;
+}
+
+:host ::ng-deep .nextbutton:active {
+    color: #ceff5c;
+    background-color: rgb(78, 126, 101);
+    box-shadow: 5px 2.5px #15161580, 5px 2.5px #15161580 inset;
+}
+
+
+
+.closing {
+      display: block; 
+  animation: .2s ease 0s 1 normal forwards;
+}
+
+
+@keyframes closeWindow {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+.window.closing {
+  animation: closeWindow 0.2s ease-in forwards;
+  pointer-events: none; 
+}

@@ -1,8 +1,211 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-html, body{
-    background-image: url("app/assets/xp.png"); 
+@font-face {
+    font-family: "DSFont";
+    src: url("/pc98.woff2") format('woff');
+    font-weight: bold;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-appearance: none; -moz-appearance: none;
+}
+
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url("/OpenDyslexic-Regular.otf") format('otf');
+    font-weight: bold;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-appearance: none; -moz-appearance: none;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: "DSFont", sans-serif;
+    font-size:  clamp(18px, 2vw, 22.5px);
+    
+    background: url('/xp.png') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-repeat: no-repeat;
+        -webkit-font-smoothing: antialiased;
+    font-display: swap;
+    
+     text-rendering: optimizeLegibility;
+}
 
+* {
+    font-family: "DSFont", sans-serif;
+}
+
+
+
+.pixel-corners-win {
+  clip-path: polygon(
+    0px calc(100% - 20px),
+    4px calc(100% - 20px),
+    4px calc(100% - 12px),
+    8px calc(100% - 12px),
+    8px calc(100% - 8px),
+    12px calc(100% - 8px),
+    12px calc(100% - 4px),
+    20px calc(100% - 4px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 12px),
+    calc(100% - 4px) calc(100% - 12px),
+    calc(100% - 4px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 4px) 20px,
+    calc(100% - 4px) 12px,
+    calc(100% - 8px) 12px,
+    calc(100% - 8px) 8px,
+    calc(100% - 12px) 8px,
+    calc(100% - 12px) 4px,
+    calc(100% - 20px) 4px,
+    calc(100% - 20px) 0px,
+    20px 0px,
+    20px 4px,
+    12px 4px,
+    12px 8px,
+    8px 8px,
+    8px 12px,
+    4px 12px,
+    4px 20px,
+    0px 20px
+  );
+}
+
+
+.pixel-corners-cont {
+  clip-path: polygon(
+    0px calc(100% - 12px),
+    4px calc(100% - 12px),
+    4px calc(100% - 8px),
+    8px calc(100% - 4px),
+    12px calc(100% - 4px),
+    12px 100%,
+    calc(100% - 12px) 100%,
+    calc(100% - 12px) calc(100% - 4px),
+    calc(100% - 8px) calc(100% - 4px),
+    calc(100% - 4px) calc(100% - 8px),
+    calc(100% - 4px) calc(100% - 12px),
+    100% calc(100% - 12px),
+    100% 12px,
+    calc(100% - 4px) 12px,
+    calc(100% - 4px) 8px,
+    calc(100% - 8px) 4px,
+    calc(100% - 12px) 4px,
+    calc(100% - 12px) 0px,
+    12px 0px,
+    12px 4px,
+    8px 4px,
+    4px 8px,
+    4px 12px,
+    0px 12px
+  );
+}
+
+
+
+@keyframes openWindow {
+	0% {
+		transform: scale(0);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+
+
+
+@keyframes closeWindow {
+	0% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(0);
+	}
+}
+
+
+
+
+.closing {
+      display: block; 
+  animation: .2s ease 0s 1 normal forwards;
+}
+
+
+@keyframes closeWindow {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+.window.closing {
+  animation: closeWindow 0.2s ease-in forwards;
+  pointer-events: none; 
+  overflow: hidden;
+}
+
+
+
+
+//    ACCESSIBILITY 
+
+body[data-highContrast="true"] {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+
+  .window {
+    background: #000000 !important;
+    border: 3px solid #FFFFFF !important;
+    color: #FFFFFF !important;
+  }
+
+  .content {
+    background-color: #111111 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #FFFFFF !important;
+  }
+
+  .nextbutton, .setting-item input[type="checkbox"] {
+    background-color: #000000 !important;
+    color: #00FF00 !important; 
+    border: 2px solid #00FF00 !important;
+    accent-color: #00FF00 !important;
+  }
+}
+
+body[data-disableAnimations="true"] {
+  *, *::before, *::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+  
+  img[src$=".gif"] {
+    opacity: 0.8; 
+  }
+}
+
+body[data-dyslexicFont="true"] {
+  &, *, *::before, *::after {
+    font-family: 'Open-Dyslexic', 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
+  }
 }

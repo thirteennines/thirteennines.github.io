@@ -1,0 +1,12 @@
+<div class="window pixel-corners-win" [id]="windowId" [class.closing]="isClosing" (animationend)="onAnimationEnd()" #setupWindow>
+  <div class="windowheader" #windowHeader>
+    <ng-content select="windowtitle" class="windowtitle"></ng-content>
+
+    @if (closeable) {
+      <button class="close-btn" (click)="close.emit()">×</button>
+    }
+  </div>
+  <div class="content pixel-corners-cont">
+    <ng-content select="windowcontent" class="windowcontent"></ng-content>
+  </div>
+</div>
