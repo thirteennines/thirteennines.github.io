@@ -1,0 +1,9 @@
+<button class="desktop-shortcut" (click)="showMelon()">
+  <div class="icon-wrapper">
+    <span style="font-size: 3rem;">🍈</span>
+    <ng-content select="icon-visual"></ng-content>
+  </div>
+  <span class="icon-label">
+    <ng-content select="icon-text"> cucumber melon</ng-content>
+  </span>
+</button>

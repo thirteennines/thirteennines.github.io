@@ -15,7 +15,7 @@
     max-width: 90vw; 
     max-height: 90vh; 
     resize: both; 
-    overflow: hidden; /* FIX: Prevents container from double-scrolling or clipping your crisp pixel borders */
+    overflow: hidden; 
     flex-direction: column;
     background: linear-gradient(0deg, rgb(117, 167, 141), rgb(100, 148, 123) 100%);
     border-radius: 0.625rem;
@@ -107,6 +107,7 @@
     flex-shrink: 1; 
     min-height: 0; 
     width: calc(100% - 10px); 
+    height: calc(100% - 5px);
     margin: 0 auto 5px auto; 
     box-sizing: border-box; 
 }
@@ -179,4 +180,12 @@ windowcontent {
 .window.closing {
   animation: closeWindow 0.2s ease-in forwards;
   pointer-events: none; 
+}
+
+
+
+
+
+*{
+scrollbar-color:  rgb(117, 167, 141) #b9dfca;
 }

@@ -146,7 +146,6 @@ html, body {
 
 
 .closing {
-      display: block; 
   animation: .2s ease 0s 1 normal forwards;
 }
 
@@ -157,7 +156,7 @@ html, body {
 }
 
 .window.closing {
-  animation: closeWindow 0.2s ease-in forwards;
+  animation: closeWindow .2s ease 0s 1 normal forwards;
   pointer-events: none; 
   overflow: hidden;
 }
@@ -208,4 +207,24 @@ body[data-dyslexicFont="true"] {
   &, *, *::before, *::after {
     font-family: 'Open-Dyslexic', 'Comic Sans MS', 'Comic Sans', cursive, sans-serif !important;
   }
+}
+
+
+.responsive{
+    width: 100%;
+  height: auto;
+}
+
+
+
+
+a{
+    text-decoration: none;
+    color: #7da323;
+}
+
+
+a:visited{
+    text-decoration: none;
+    color: #138325;
 }

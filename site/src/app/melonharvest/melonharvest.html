@@ -1,0 +1,25 @@
+@if (isWindowVisible) { 
+<window class="melonharvest" (close)="closeWindow()" (animationFinished)="destroyWindow()" [isClosing]="isClosing">
+  <windowtitle>🍈 melon harvest</windowtitle>
+
+  <windowcontent> 
+    <div class="melonbody">
+      <p class="">this is every fan art i have ever recieved of my beautiful daughter cucumber melon</p>
+      <p style="text-align: center;">🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈</p> <br>
+        <div class="image-gallery">
+            @for (image of imageFiles; track image ; let i = $index){
+                <div class="caption">
+                <img
+                [src]="getImagePath(image)"
+                alt="Image in folder"
+                class="gallery-image responsive"
+            />
+            <a href="{{imageSource[i] }}"><p>{{imageCreator[i] }}</p></a>
+            </div>
+            }
+    </div>
+    </div>
+    
+  </windowcontent>
+</window>
+}

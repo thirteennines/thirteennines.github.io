@@ -2,9 +2,8 @@
   <div class="windowheader" #windowHeader>
     <ng-content select="windowtitle" class="windowtitle"></ng-content>
 
-    @if (closeable) {
       <button class="close-btn" (click)="close.emit()">×</button>
-    }
+
   </div>
   <div class="content pixel-corners-cont">
     <ng-content select="windowcontent" class="windowcontent"></ng-content>

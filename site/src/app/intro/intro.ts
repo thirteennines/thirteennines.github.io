@@ -1,25 +1,22 @@
 import { Component, OnInit } from '@angular/core'; // 1. Added OnInit import
 import { CommonModule } from '@angular/common';
-import { WindowTab } from './window/window';
-import { WindowTitle } from './window/window_tile';
-import { WindowContent } from './window/window_content';
-import { Intro } from "./intro/intro";
-import { Melonharvest } from './melonharvest/melonharvest';
-import { Icons } from "./icons/icons";
+import { WindowTab } from '../window/window';
+import { WindowTitle } from '../window/window_tile';
+import { WindowContent } from '../window/window_content';
 
 @Component({
-  selector: 'app-root',
+  selector: 'intro',
   standalone: true,
   imports: [
     CommonModule,
-    Melonharvest,
-    Intro,
-    Icons
+    WindowTab,
+    WindowTitle,
+    WindowContent,
 ],
-  templateUrl: './app.html',
-  styleUrls: ['./app.scss']
+  templateUrl: './intro.html',
+  styleUrls: ['./intro.scss']
 })
-export class App implements OnInit {
+export class Intro implements OnInit {
 
   isWindowVisible = true;
   isClosing = false;
