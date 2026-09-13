@@ -20,7 +20,7 @@ jobs:
         working-directory: site
 
       - name: Build Angular app
-        run: npx ng build --configuration production# your build step here
+        run: npx ng build --configuration production
         working-directory: site
         
       - name: deploy2nekoweb
