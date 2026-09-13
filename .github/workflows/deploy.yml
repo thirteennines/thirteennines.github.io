@@ -13,12 +13,15 @@ jobs:
         with:
           node-version: '24'
           cache: 'npm'
+          cache-dependency-path: 'site/package-lock.json'
 
       - name: Install dependencies
         run: npm ci
+        working-directory: site
 
       - name: Build Angular app
         run: npx ng build --configuration production# your build step here
+        working-directory: site
         
       - name: deploy2nekoweb
         uses: indiefellas/deploy2nekoweb@main
@@ -26,4 +29,4 @@ jobs:
           nekoweb-api-key: ${{ secrets.NEKOWEB_API_KEY }}
           nekoweb-domain: '9999999999999.nekoweb.org'
           nekoweb-username: '9999999999999'
-          directory: 'site/'
+          directory: 'site/dist/browser'
