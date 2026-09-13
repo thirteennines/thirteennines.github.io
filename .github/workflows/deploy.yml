@@ -29,4 +29,4 @@ jobs:
           nekoweb-api-key: ${{ secrets.NEKOWEB_API_KEY }}
           nekoweb-domain: '9999999999999.nekoweb.org'
           nekoweb-username: 'gourmandizes'
-          directory: 'home/runner/work/thirteennines.github.io/thirteennines.github.io/site/dist/site'
+          directory: 'site/dist/site/'
