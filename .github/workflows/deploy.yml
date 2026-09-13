@@ -28,5 +28,5 @@ jobs:
         with:
           nekoweb-api-key: ${{ secrets.NEKOWEB_API_KEY }}
           nekoweb-domain: '9999999999999.nekoweb.org'
-          nekoweb-username: '9999999999999'
+          nekoweb-username: 'gourmandizes'
           directory: 'site/dist/browser'
