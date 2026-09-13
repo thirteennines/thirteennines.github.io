@@ -1,25 +1,66 @@
-@if (isWindowVisible) { 
-<window class="melonharvest" (close)="closeWindow()" (animationFinished)="destroyWindow()" [isClosing]="isClosing">
+<window (close)="close()" (animationFinished)="animationDone()" [isClosing]="isClosing">
   <windowtitle>🍈 melon harvest</windowtitle>
 
-  <windowcontent> 
+  <windowcontent>
     <div class="melonbody">
-      <p class="">this is every fan art i have ever recieved of my beautiful daughter cucumber melon</p>
-      <p style="text-align: center;">🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈🍈</p> <br>
-        <div class="image-gallery">
-            @for (image of imageFiles; track image ; let i = $index){
-                <div class="caption">
-                <img
-                [src]="getImagePath(image)"
-                alt="Image in folder"
-                class="gallery-image responsive"
+      <p>
+        this is every piece of art i have ever recieved of my beautiful daughter
+        cucumber melon. click images to get a full view!
+      </p>
+
+      <p style="text-align: center;">
+        🍈🍈🍈🍈🍈🍈🍈🍈🍈
+      </p>
+
+      <br>
+
+      <div class="gallery-grid">
+        @for (file of imageFiles; track file; let i = $index) {
+          <div class="gallery-item">
+            <img
+              [src]="getImagePath(file)"
+              [alt]="imageCreator[i]"
+              (click)="openImage(i)"
             />
-            <a href="{{imageSource[i] }}"><p>{{imageCreator[i] }}</p></a>
-            </div>
-            }
+
+            <span class="creator-credits">
+              by
+              @if (imageSource[i]) {
+                <a
+                  [href]="imageSource[i]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {{ imageCreator[i] }}
+                </a>
+              } @else {
+                {{ imageCreator[i] }}
+              }
+            </span>
+          </div>
+        }
+      </div>
     </div>
-    </div>
-    
   </windowcontent>
 </window>
+@if (selectedImage !== null) {
+  <window
+    class="image-window"
+    (close)="closeImage()"
+    [isClosing]="imageViewerClosing"
+    (animationFinished)="imageViewerAnimationDone()"
+  >
+    <windowtitle>
+      🍈 {{ imageCreator[selectedImage] }}
+    </windowtitle>
+
+    <windowcontent>
+      <div class="image-viewer">
+        <img
+          [src]="getImagePath(imageFiles[selectedImage])"
+          [alt]="imageCreator[selectedImage]"
+        />
+      </div>
+    </windowcontent>
+  </window>
 }

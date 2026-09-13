@@ -1,4 +1,13 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  HostListener
+} from '@angular/core';
 
 @Component({
   selector: 'window',
@@ -7,31 +16,64 @@ import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, Eleme
   styleUrls: ['./window.scss'],
 })
 export class WindowTab implements AfterViewInit {
+  private static zIndexCounter = 1000;
+
   @Input() windowId: string = 'setupWindow';
-  @Input() closeable: boolean = false; 
+  @Input() closeable: boolean = false;
+
   @Output() close = new EventEmitter<void>();
-  
-  @Input() isClosing: boolean = false; 
+
+  @Input() isClosing: boolean = false;
   @Output() animationFinished = new EventEmitter<void>();
 
-  @ViewChild('setupWindow') setupWindow!: ElementRef<HTMLDivElement>;
-  @ViewChild('windowHeader') windowHeader!: ElementRef<HTMLDivElement>;
+  @ViewChild('setupWindow')
+  setupWindow!: ElementRef<HTMLDivElement>;
+
+  @ViewChild('windowHeader')
+  windowHeader!: ElementRef<HTMLDivElement>;
+
+  ngAfterViewInit() {
+    this.makeElementDraggable(
+      this.setupWindow.nativeElement,
+      this.windowHeader.nativeElement
+    );
+
+    this.bringToFront();
+  }
+
   onAnimationEnd() {
     if (this.isClosing) {
       this.animationFinished.emit();
     }
   }
 
-  ngAfterViewInit() {
-    this.makeElementDraggable(this.setupWindow.nativeElement, this.windowHeader.nativeElement);
+  @HostListener('mousedown')
+  onWindowClick() {
+    this.bringToFront();
   }
 
-  private makeElementDraggable(elmnt: HTMLDivElement, header: HTMLDivElement) {
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  private bringToFront() {
+    if (!this.setupWindow) return;
+
+    WindowTab.zIndexCounter++;
+
+    this.setupWindow.nativeElement.style.zIndex =
+      WindowTab.zIndexCounter.toString();
+  }
+
+  private makeElementDraggable(
+    elmnt: HTMLDivElement,
+    header: HTMLDivElement
+  ) {
+    let pos1 = 0;
+    let pos2 = 0;
+    let pos3 = 0;
+    let pos4 = 0;
 
     header.onmousedown = (e: MouseEvent) => {
-      e = e || window.event;
       e.preventDefault();
+
+      this.bringToFront();
 
       pos3 = e.clientX;
       pos4 = e.clientY;
@@ -42,7 +84,6 @@ export class WindowTab implements AfterViewInit {
       };
 
       document.onmousemove = (moveEvent: MouseEvent) => {
-        moveEvent = moveEvent || window.event;
         moveEvent.preventDefault();
 
         pos1 = pos3 - moveEvent.clientX;
@@ -50,8 +91,11 @@ export class WindowTab implements AfterViewInit {
         pos3 = moveEvent.clientX;
         pos4 = moveEvent.clientY;
 
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.top =
+          elmnt.offsetTop - pos2 + 'px';
+
+        elmnt.style.left =
+          elmnt.offsetLeft - pos1 + 'px';
       };
     };
   }

@@ -1,76 +1,53 @@
-import { Component, OnInit } from '@angular/core'; // 1. Added OnInit import
+// intro.ts
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WindowTab } from '../window/window';
 import { WindowTitle } from '../window/window_tile';
 import { WindowContent } from '../window/window_content';
 
+// Explicitly define the allowed keys to match App exactly
+type AccessibilitySetting = 'highContrast' | 'disableAnimations' | 'dyslexicFont' | 'largeText' | 'grayscale';
+
+interface AccessibilityConfig {
+  highContrast: boolean;
+  disableAnimations: boolean;
+  dyslexicFont: boolean;
+  largeText: boolean;
+  grayscale: boolean;
+}
+
 @Component({
   selector: 'intro',
   standalone: true,
-  imports: [
-    CommonModule,
-    WindowTab,
-    WindowTitle,
-    WindowContent,
-],
+  imports: [CommonModule, WindowTab, WindowTitle, WindowContent],
   templateUrl: './intro.html',
   styleUrls: ['./intro.scss']
 })
-export class Intro implements OnInit {
+export class Intro {
+  @Input() accessibility!: AccessibilityConfig;
+  @Input() isClosing: boolean = false;
 
-  isWindowVisible = true;
-  isClosing = false;
+  // FIXED: Tied event payload type strictly to AccessibilitySetting instead of a generic string
+  @Output() onToggleSetting = new EventEmitter<{ setting: AccessibilitySetting; isChecked: boolean }>();
+  @Output() onCloseWindow = new EventEmitter<void>();
+  @Output() onAnimationFinished = new EventEmitter<void>();
+
   activeTab: 'home' | 'next' = 'home';
-  closeable = false;
-
-  accessibility = {
-    highContrast: false,
-    disableAnimations: false,
-    dyslexicFont: false,
-    largeText: false,
-    grayscale: false
-  };
-
-  ngOnInit() {
-    const savedSettings = localStorage.getItem('9x13_accessibility');
-    if (savedSettings) {
-      try {
-        this.accessibility = JSON.parse(savedSettings);
-        
-        Object.keys(this.accessibility).forEach((key) => {
-          const settingName = key as keyof typeof this.accessibility;
-          if (this.accessibility[settingName]) {
-            document.body.setAttribute(`data-${settingName}`, 'true');
-          }
-        });
-      } catch (e) {
-        console.error('Could not parse accessibility choices from storage:', e);
-      }
-    }
-  }
-
-  toggleSetting(setting: keyof typeof this.accessibility, isChecked: boolean) {
-    this.accessibility[setting] = isChecked;
-    
-    if (isChecked) {
-      document.body.setAttribute(`data-${setting}`, 'true');
-    } else {
-      document.body.removeAttribute(`data-${setting}`);
-    }
-
-    localStorage.setItem('9x13_accessibility', JSON.stringify(this.accessibility));
-  }
-
-  closeWindow() {
-    this.isClosing = true;
-  }
-
-  destroyWindow() {
-    this.isWindowVisible = false;
-    this.isClosing = false; 
-  }
 
   setActiveTab(tabName: 'home' | 'next') {
     this.activeTab = tabName;
+  }
+
+  // FIXED: Explicitly typed the settingName parameter
+  emitToggle(settingName: AccessibilitySetting, isChecked: boolean) {
+    this.onToggleSetting.emit({ setting: settingName, isChecked });
+  }
+
+  close() {
+    this.onCloseWindow.emit();
+  }
+
+  animationDone() {
+    this.onAnimationFinished.emit();
   }
 }

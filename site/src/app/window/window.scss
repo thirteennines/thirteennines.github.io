@@ -17,7 +17,7 @@
     resize: both; 
     overflow: hidden; 
     flex-direction: column;
-    background: linear-gradient(0deg, rgb(117, 167, 141), rgb(100, 148, 123) 100%);
+    background: radial-gradient(circle, rgb(139, 182, 160), rgb(100, 148, 123) 100%);
     border-radius: 0.625rem;
     display: flex;
     transition: opacity 0.2s ease-out;
@@ -45,14 +45,8 @@
     background-color: transparent;
     color:  #DCF2E6;
     cursor: pointer;
-    float: right;
-    justify-self: end;
-    margin: 1px;
     margin-left: auto;
-    width: 1em;
-    height: 1em;
     text-align: center;
-    padding: auto;
     border: none;
 }
 

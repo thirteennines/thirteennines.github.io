@@ -1,4 +1,65 @@
-<icon></icon>
-<intro></intro>
+<div class="desktop-environment">
+  
+  <div class="desktop-icons">
+    <icon windowId="melon"
+    (iconClicked)="openWindow($event)"
+    name="melon harvest"
+    picture="🍈"></icon>
 
-<melonharvest></melonharvest>
+     <icon windowId="music"
+    (iconClicked)="openWindow($event)"
+    name="music player"
+    picture="🎶"></icon>
+
+     <icon windowId="about"
+    (iconClicked)="openWindow($event)"
+    name="system info"
+    picture="🖥️"></icon>
+
+    <icon windowId="settings" 
+    (iconClicked)="openWindow($event)"
+    name="settings"
+    picture="⚙️"></icon>
+  </div>
+
+  <div class="windows-layer">
+    
+    @if (openWindows['melon']) {
+      <melonharvest 
+        [isClosing]="closingWindows['melon']"
+        (onCloseWindow)="startCloseWindow('melon')"
+        (onAnimationFinished)="destroyWindow('melon')">
+      </melonharvest>
+    }
+
+    @if (openWindows['intro']) {
+      <intro 
+        [isClosing]="closingWindows['intro']"
+        [accessibility]="accessibility"
+        (onToggleSetting)="toggleSetting($event)"
+        (onCloseWindow)="startCloseWindow('intro')"
+        (onAnimationFinished)="destroyWindow('intro')">
+      </intro>
+    }
+
+        @if (openWindows['settings']) {
+      <settings 
+        [isClosing]="closingWindows['settings']"
+        [accessibility]="accessibility"
+        (onToggleSetting)="toggleSetting($event)"
+        (onCloseWindow)="startCloseWindow('settings')"
+        (onAnimationFinished)="destroyWindow('settings')">
+      </settings>
+    }
+
+    
+        @if (openWindows['about']) {
+      <about 
+        [isClosing]="closingWindows['about']"
+        (onCloseWindow)="startCloseWindow('about')"
+        (onAnimationFinished)="destroyWindow('about')">
+      </about>
+    }
+
+  </div>
+</div>

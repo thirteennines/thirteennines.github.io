@@ -1,9 +1,10 @@
-<button class="desktop-shortcut" (click)="showMelon()">
+<button class="desktop-shortcut" type="button" (click)="showWindow(windowId)">
   <div class="icon-wrapper">
-    <span style="font-size: 3rem;">🍈</span>
+    <span style="font-size: 2.75rem;">{{picture}}</span>
     <ng-content select="icon-visual"></ng-content>
   </div>
   <span class="icon-label">
-    <ng-content select="icon-text"> cucumber melon</ng-content>
+    <ng-content select="icon-text">{{name}}</ng-content>
   </span>
 </button>
+

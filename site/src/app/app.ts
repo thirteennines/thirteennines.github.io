@@ -1,30 +1,46 @@
-import { Component, OnInit } from '@angular/core'; // 1. Added OnInit import
+// app.ts
+import { Component, OnInit } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
-import { WindowTab } from './window/window';
-import { WindowTitle } from './window/window_tile';
-import { WindowContent } from './window/window_content';
 import { Intro } from "./intro/intro";
 import { Melonharvest } from './melonharvest/melonharvest';
 import { Icons } from "./icons/icons";
+import { Musicplayer } from './musicplayer/musicplayer';
+import { Settings } from "./settings/settings";
+import { About } from './about/about';
+
+type AccessibilitySetting = 'highContrast' | 'disableAnimations' | 'dyslexicFont' | 'largeText' | 'grayscale';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app',
   standalone: true,
   imports: [
     CommonModule,
     Melonharvest,
     Intro,
-    Icons
+    Icons,
+    Settings,
+    About
 ],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
 export class App implements OnInit {
 
-  isWindowVisible = true;
-  isClosing = false;
-  activeTab: 'home' | 'next' = 'home';
-  closeable = false;
+  openWindows: { [key: string]: boolean } = {
+    melon: false,
+    intro: true,
+    settings:false,
+    music:false,
+    about:false
+  };
+
+  closingWindows: { [key: string]: boolean } = {
+    melon: false,
+    intro: false,
+    settings:false,
+    music:false,
+    about:false
+  };
 
   accessibility = {
     highContrast: false,
@@ -39,9 +55,8 @@ export class App implements OnInit {
     if (savedSettings) {
       try {
         this.accessibility = JSON.parse(savedSettings);
-        
         Object.keys(this.accessibility).forEach((key) => {
-          const settingName = key as keyof typeof this.accessibility;
+          const settingName = key as AccessibilitySetting;
           if (this.accessibility[settingName]) {
             document.body.setAttribute(`data-${settingName}`, 'true');
           }
@@ -52,28 +67,29 @@ export class App implements OnInit {
     }
   }
 
-  toggleSetting(setting: keyof typeof this.accessibility, isChecked: boolean) {
-    this.accessibility[setting] = isChecked;
+  toggleSetting(payload: { setting: AccessibilitySetting; isChecked: boolean }) {
+    this.accessibility[payload.setting] = payload.isChecked;
     
-    if (isChecked) {
-      document.body.setAttribute(`data-${setting}`, 'true');
+    if (payload.isChecked) {
+      document.body.setAttribute(`data-${payload.setting}`, 'true');
     } else {
-      document.body.removeAttribute(`data-${setting}`);
+      document.body.removeAttribute(`data-${payload.setting}`);
     }
-
+    
     localStorage.setItem('9x13_accessibility', JSON.stringify(this.accessibility));
   }
 
-  closeWindow() {
-    this.isClosing = true;
+  openWindow(windowName: string) {
+    this.openWindows[windowName] = true;
+    this.closingWindows[windowName] = false;
   }
 
-  destroyWindow() {
-    this.isWindowVisible = false;
-    this.isClosing = false; 
+  startCloseWindow(windowName: string) {
+    this.closingWindows[windowName] = true;
   }
 
-  setActiveTab(tabName: 'home' | 'next') {
-    this.activeTab = tabName;
+  destroyWindow(windowName: string) {
+    this.openWindows[windowName] = false;
+    this.closingWindows[windowName] = false;
   }
 }
