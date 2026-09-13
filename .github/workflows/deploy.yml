@@ -21,6 +21,7 @@ jobs:
 
       - name: Build Angular app
         run: npx ng build --configuration production
+        working-directory: site
         
       - name: deploy2nekoweb
         uses: indiefellas/deploy2nekoweb@main
