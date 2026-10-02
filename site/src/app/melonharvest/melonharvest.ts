@@ -23,39 +23,72 @@ export class Melonharvest {
   imageViewerClosing = false;
 
   imageFiles = [
-    'dds.jpg',
+    'robbie.png',
     'hussie.png',
     'immortalitycat.png',
+    'alma.png',
+    'miles.jpg',
+    'SOFIE_CITADRILL.png',
     'meattreat35.png',
     'punchbox.png',
-    'tiredmage.jpg',
     'wezie.gif',
     'wuttie.gif',
-    'errorsorry3.jpg'
+    'errorsorry4_1.jpg',
+    'spiderbot.png',
+    'crab.png',
+    'moonsettler.webp',
+    'jerry.png',
+    'dds.jpg',
+    'errorsorry3.jpg',
+    'camila.jpg',
+    'tiredmage.jpg',
+    'mui.webp'
   ];
 
   imageCreator = [
-    'digitaldevilsaga on instagram',
+    'Flareware on bluesky',
     'Andrew Hussie of MS Paint Adventures',
     'immortalitycat on twitter',
-    'MeatTreat35 of Artfight',
+    'almadev on bluesky',
+    'mimi on bluesky',
+    "Sofialoreart",
+    'MeatTreat35 on artfight',
     'punchb0x on twitter',
+    'Weszie on artfight',
+    'Wuttie on artfight',
+    'errorsorry on bluesky',
+    'My friend spiderbot',
+    'Conrab on bluesky',
+    'moonsettler on bluesky',
+    'Jeppster on bluesky',
+    'digitaldevilsaga on instagram',
+    'errorsorry on bluesky',
+    'the SEEKER of POWER on bluesky',
     'my friend flynn',
-    'Weszie of Artfight',
-    'Wuttie of Artfight',
-    'errorsorry on Bluesky'
+    'lamespectre on bluesky',
   ];
 
   imageSource = [
-    'https://instagram.com/digitaldevilsaga',
+    'https://bsky.app/profile/flareware.bsky.social',
     'https://homestuck.com',
     'https://x.com/immortalitycat',
+    'https://bsky.app/profile/almadev.bsky.social',
+    'https://bsky.app/profile/m1mim1mi.bsky.social',
+    'https://sophialoreart.wixsite.com/artwork',
     'https://artfight.net/~MeatTreat35',
     'https://x.com/punchb0x',
-    '',
     'https://artfight.net/~weszie',
     'https://artfight.net/~Wuttie',
-    'https://bsky.app/profile/errorsorry.bsky.social'
+    'https://bsky.app/profile/errorsorry.bsky.social',
+    '',
+    'https://bsky.app/profile/conrab.xyz',
+    'https://bsky.app/profile/sunshambler.bsky.social',
+    'https://bsky.app/profile/jeppster.bsky.social',
+    'https://instagram.com/digitaldevilsaga',
+    'https://bsky.app/profile/errorsorry.bsky.social',
+    'https://bsky.app/profile/1000thsummer.bsky.social',
+    '',
+    'https://bsky.app/profile/lamespectre.bsky.social'
   ];
 
   getImagePath(filename: string): string {
