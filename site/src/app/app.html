@@ -30,20 +30,18 @@
     (iconClicked)="openWindow($event)"
     name="settings"
     picture="⚙️"></icon>
-    <div>
- <icon
-    picture="😸" name="test1"></icon>
-    <!--# follow class="follow-frame" title="Follow on Nekoweb!" -->
-  </div>
-<div>
-  <a href="https://nekoweb.org/frame/follow">
-  <icon
-    picture="😸" name="test2 w link"></icon>
-    <!--# follow class="follow-frame" title="Follow on Nekoweb!" -->
-  </a></div>
 
+    <button class="desktop-shortcut" type="button">
+    <div class="icon-wrapper">
+        😸
+      </div>
+      <span class="icon-label">
+          <p select="icon-text"><!--# follow class="follow-frame" title="Follow on Nekoweb!" --></p>
+      </span>
+    </button>
+  
 
-
+</div>
   <div class="windows-layer">
     
     @if (openWindows['melon']) {
