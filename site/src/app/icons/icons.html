@@ -1,6 +1,6 @@
 <button class="desktop-shortcut" type="button" (click)="showWindow(windowId)">
   <div class="icon-wrapper">
-    <span style="font-size: 2.75rem;">{{picture}}</span>
+    <span style="font-size: 2.75rem;"><img src={{picture}} width="50px" alt="{{emoji}}"></span>
     <ng-content select="icon-visual"></ng-content>
   </div>
   <span class="icon-label">

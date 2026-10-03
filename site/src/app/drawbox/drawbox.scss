@@ -179,6 +179,8 @@ input[type=range].generator-input {
 
 ::ng-deep window.sizing .window {
     display: flex !important;
-    min-width: 1000px !important;
+    max-width: 1000px !important;
     min-height: 750px !important;
+    left: 10%;
+    top: 0%;
 }

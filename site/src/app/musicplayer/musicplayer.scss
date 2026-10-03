@@ -1,0 +1,216 @@
+$win-bg: #DCF2E6;
+$win-edge-light: #FFFF;
+$win-edge-shadow: #5d8e5897;
+$win-edge-dark:#76A38C;
+$screen-bg: #76A38C;
+$screen-text: #DCF2E6;
+
+.win95-player {
+  padding: 8px;
+  -webkit-font-smoothing: none;
+  font-size: 11px;
+  max-width: 340px;
+  user-select: none;
+}
+
+img{
+    max-width: 36px;
+}
+
+.display-panel {
+  background: $screen-bg;
+  border: 2px solid;
+  border-radius: 4px;
+  border-color: $win-edge-shadow $win-edge-light $win-edge-light $win-edge-shadow;
+  padding: 6px;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: center;
+
+  .mix-gif {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+  }
+
+  .metadata-readout {
+    flex-grow: 1;
+    color: $screen-text;
+    
+    .scrolling-ticker {
+      font-weight: bold;
+      padding: 2px 4px;
+      border-radius: 2px;
+      margin-bottom: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .time-readout {
+      font-size: 14px;
+      letter-spacing: 1px;
+      display: flex;
+      gap: 4px;
+      font-weight: bold;
+    }
+  }
+}
+
+.sliders-deck {
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    
+    label {
+      font-weight: bold;
+      width: 30px;
+    }
+  }
+}
+
+.win95-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: transparent;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    background: $win-edge-light;
+    border-bottom: 1px solid $win-bg;
+    border-right: 1px solid $win-bg;
+    border-radius: 4px;
+    box-shadow: inset 1px 1px 0px #76A38C;
+  }
+
+  &::-webkit-slider-thumb {
+    height: 15px;
+    width: 15px;
+    background: #DCF2E6;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: $win-edge-light $win-edge-dark $win-edge-dark $win-edge-light;
+    box-shadow: inset 1px 1px 0px $win-edge-light;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -7px;
+  }
+  
+}
+
+.media-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.win95-btn {
+  background: $win-bg;
+  border: 2px solid;
+  border-color: $win-edge-light $win-edge-dark $win-edge-dark $win-edge-light;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+
+  &:active {
+    border-color: $win-edge-dark $win-edge-light $win-edge-light $win-edge-dark;
+    padding: 5px 5px 3px 7px;
+  }
+}
+
+.tape-deck-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  
+  label {
+    font-weight: bold;
+  }
+}
+
+.win95-select {
+  flex-grow: 1;
+  background: #DCF2E6;
+  border: 2px solid;
+  border-color: $win-edge-shadow $win-edge-light $win-edge-light $win-edge-shadow;
+  font-family: inherit;
+  font-size: 11px;
+  padding: 2px;
+  outline: none;
+  border-radius: 4px;
+}
+
+.playlist-window {
+  background: #DCF2E6;
+  border: 2px solid;
+  border-color: $win-edge-shadow $win-edge-light $win-edge-light $win-edge-shadow;
+  max-height: 120px;
+  overflow-y: auto;
+  border-radius: 4px;
+
+  .playlist-header {
+    background: #76A38C;
+    color: #DCF2E6;
+    padding: 2px 6px;
+    font-weight: bold;
+  }
+
+  .playlist-tracks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      gap: 6px;
+      padding: 3px 6px;
+      cursor: pointer;
+      border-bottom: 1px id #DCF2E6;
+      align-items: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+
+      &.track-active {
+        background-color: #BEC246;
+        color:#DCF2E6;
+      }
+
+      .track-num {
+        opacity: 0.6;
+        color:#76A38C;
+      }
+    }
+  }
+}
+
+
+::ng-deep window.size .window {
+    max-width: 350px !important;
+    max-height: 425px !important;
+    min-width: 100px !important;
+}

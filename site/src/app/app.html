@@ -4,37 +4,43 @@
     <icon windowId="melon"
     (iconClicked)="openWindow($event)"
     name="melon harvest"
-    picture="🍈"></icon>
+    picture="cucu.png"></icon>
 
-     <!-- <icon windowId="music"
+     <icon windowId="music"
     (iconClicked)="openWindow($event)"
-    name="music player"
-    picture="🎶"></icon> -->
+    name="mixtapes"
+    emoji="🎶"
+    picture="seaslug.png"></icon>
 
     <icon windowId="about"
     (iconClicked)="openWindow($event)"
     name="system info"
-    picture="🖥️"></icon>
+    emoji="🖥️"
+    picture="catcomp.png"></icon>
 
     <icon windowId="drawbox" 
     (iconClicked)="openWindow($event)"
     name="paint"
-    picture="🎨"></icon>
+    emoji="🎨"
+    picture="greencat.png"></icon>
     
     <icon windowId="guestbook" 
     (iconClicked)="openWindow($event)"
     name="guest book"
-    picture="📖"></icon>
+    picture="nav.png"
+    emoji="📖"></icon>
 
     <icon windowId="new" 
     (iconClicked)="openWindow($event)"
     name="updates"
-    picture="!"></icon>
+    emoji="!"
+    picture="salad.gif"></icon>
 
     <icon windowId="settings" 
     (iconClicked)="openWindow($event)"
     name="settings"
-    picture="⚙️"></icon>
+    emoji="⚙️"
+    picture="cat-snack.png"></icon>
 
 </div>
   <div class="windows-layer">
@@ -99,6 +105,14 @@
         (onCloseWindow)="startCloseWindow('guestbook')"
         (onAnimationFinished)="destroyWindow('guestbook')">
       </guestbook>
+    }
+
+       @if (openWindows['music']) {
+      <musicplayer 
+        [isClosing]="closingWindows['music']"
+        (onCloseWindow)="startCloseWindow('music')"
+        (onAnimationFinished)="destroyWindow('music')">
+      </musicplayer>
     }
 
 

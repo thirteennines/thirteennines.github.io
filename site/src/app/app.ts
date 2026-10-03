@@ -25,7 +25,8 @@ type AccessibilitySetting = 'highContrast' | 'disableAnimations' | 'dyslexicFont
     About,
     Drawbox,
     Guestbook,
-    New
+    New,
+    Musicplayer
 ],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']

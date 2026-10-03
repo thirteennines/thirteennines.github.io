@@ -11,7 +11,8 @@ export class Icons {
   @Input() windowId: string = ''; 
   @Output() iconClicked = new EventEmitter<string>();
   @Input() name: string = 'nya';
-  @Input() picture: string = '🐈';
+  @Input() picture: string = '';
+  @Input() emoji: string = '';
 
 
   showWindow(windowString : string) {

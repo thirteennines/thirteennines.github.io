@@ -6,12 +6,10 @@
 
 
 
-::ng-deep window.sizing .window {
+::ng-deep window.sizes .window {
     display: flex !important;
-    min-width: 1000px !important;
-    min-height: 900px !important;
-    top:5% !important;
-    left: 5% !important;
+    min-width: 800px !important;
+    min-height: 400px !important;
 }
 
 
