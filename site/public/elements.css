@@ -1,0 +1,54 @@
+.site-box {
+    color: #DCF2E6;
+    font-size: 12px;
+    background-image: url("https://9999999999999.nekoweb.org/9999999999999.nekoweb.org/melon_harvest/box.png");
+    background-size: 55%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 40rem;
+    transition: all .2s ease-in-out;
+}
+
+.site-box > a > p {
+    color: transparent;
+    font-weight: bold;
+}
+
+.site-box > a > span {
+    color: #ff003c;
+    font-weight: bold;
+    font-style: italic;
+    
+    font-size: 15px !important; 
+    
+    display: inline-block !important;
+    white-space: nowrap !important;
+    
+    -webkit-text-stroke: .5px rgb(0, 0, 0);
+    letter-spacing: 0px; 
+    transition: letter-spacing .2s ease-in-out, font-size .2s ease-in-out;
+}
+
+.site-box:hover {
+    background-size: 70%;
+}
+
+.site-box:hover > a > span {
+    letter-spacing: 4px !important; 
+}
+
+.site-box > a > p {
+    color: transparent;
+    font-weight: bold;
+}
+
+.site-box > a > span {
+    color: #ff005d;
+    font-style: italic;
+    font-size: larger;
+}
+
+
+.site-box .sitefeature {
+    display: none !important;
+}
