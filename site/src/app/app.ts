@@ -8,6 +8,7 @@ import { Musicplayer } from './musicplayer/musicplayer';
 import { Settings } from "./settings/settings";
 import { About } from './about/about';
 import { Drawbox } from './drawbox/drawbox';
+import { Guestbook } from './guestbook/guestbook';
 
 type AccessibilitySetting = 'highContrast' | 'disableAnimations' | 'dyslexicFont' | 'largeText' | 'grayscale';
 
@@ -21,7 +22,8 @@ type AccessibilitySetting = 'highContrast' | 'disableAnimations' | 'dyslexicFont
     Icons,
     Settings,
     About,
-    Drawbox
+    Drawbox,
+    Guestbook
 ],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
@@ -35,6 +37,7 @@ export class App implements OnInit {
     music:false,
     about:false,
     drawbox:false,
+    guestbook:false,
   };
 
   closingWindows: { [key: string]: boolean } = {
@@ -44,7 +47,7 @@ export class App implements OnInit {
     music:false,
     about:false,
     drawbox:false,
-
+    guestbook:false,
   };
 
   accessibility = {

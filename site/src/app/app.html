@@ -20,11 +20,17 @@
     (iconClicked)="openWindow($event)"
     name="paint"
     picture="🎨"></icon>
+    
+    <icon windowId="guestbook" 
+    (iconClicked)="openWindow($event)"
+    name="guest book"
+    picture="📖"></icon>
 
     <icon windowId="settings" 
     (iconClicked)="openWindow($event)"
     name="settings"
     picture="⚙️"></icon>
+
   </div>
 
   <div class="windows-layer">
@@ -72,6 +78,14 @@
         (onCloseWindow)="startCloseWindow('drawbox')"
         (onAnimationFinished)="destroyWindow('drawbox')">
       </drawbox>
+    }
+
+        @if (openWindows['guestbook']) {
+      <guestbook 
+        [isClosing]="closingWindows['guestbook']"
+        (onCloseWindow)="startCloseWindow('guestbook')"
+        (onAnimationFinished)="destroyWindow('guestbook')">
+      </guestbook>
     }
 
     <!--# follow -->

@@ -1,0 +1,18 @@
+    svg{
+     width: 24px;
+     height: 24px;
+}
+
+
+
+
+::ng-deep window.sizing .window {
+    display: flex !important;
+    min-width: 1000px !important;
+    min-height: 900px !important;
+    top:5% !important;
+    left: 5% !important;
+}
+
+
+
