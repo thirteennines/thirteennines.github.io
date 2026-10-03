@@ -241,8 +241,6 @@ interface CommentGroup {
     .c-input:focus {
       outline: none;
 
-      border-color: rgb(78, 126, 101);
-
       box-shadow:
         0 0 0 3px #CEF8B1;
     }

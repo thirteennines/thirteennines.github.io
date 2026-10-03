@@ -66,7 +66,7 @@ export class Drawbox implements OnInit, AfterViewInit {
 
   private startIndex = -1;
 
-  private strokeColor = '#20283D';
+  private strokeColor = '#1e2501';
 
   public strokeWidth = 5;
 
@@ -98,7 +98,7 @@ export class Drawbox implements OnInit, AfterViewInit {
 
   this.context = ctx;
 
-  this.context.fillStyle = '#FBF7F3';
+  this.context.fillStyle = '#f2e9e7';
   this.context.fillRect(
     0,
     0,
@@ -306,7 +306,7 @@ export class Drawbox implements OnInit, AfterViewInit {
   public clear(): void {
 
     this.context.fillStyle =
-      '#FBF7F3';
+      '#f2e9e7';
 
     this.context.fillRect(
       0,

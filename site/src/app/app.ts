@@ -9,6 +9,7 @@ import { Settings } from "./settings/settings";
 import { About } from './about/about';
 import { Drawbox } from './drawbox/drawbox';
 import { Guestbook } from './guestbook/guestbook';
+import { New } from './new/new';
 
 type AccessibilitySetting = 'highContrast' | 'disableAnimations' | 'dyslexicFont' | 'largeText' | 'grayscale';
 
@@ -23,7 +24,8 @@ type AccessibilitySetting = 'highContrast' | 'disableAnimations' | 'dyslexicFont
     Settings,
     About,
     Drawbox,
-    Guestbook
+    Guestbook,
+    New
 ],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
@@ -38,6 +40,7 @@ export class App implements OnInit {
     about:false,
     drawbox:false,
     guestbook:false,
+    new:true,
   };
 
   closingWindows: { [key: string]: boolean } = {
@@ -48,6 +51,7 @@ export class App implements OnInit {
     about:false,
     drawbox:false,
     guestbook:false,
+    new:false,
   };
 
   accessibility = {
@@ -59,6 +63,12 @@ export class App implements OnInit {
   };
 
   ngOnInit() {
+    const wizardDone = localStorage.getItem('9x13_wizard_completed');
+    if (wizardDone === 'true') {
+      this.openWindows['intro'] = false;
+    }
+
+
     const savedSettings = localStorage.getItem('9x13_accessibility');
     if (savedSettings) {
       try {
@@ -86,6 +96,12 @@ export class App implements OnInit {
     
     localStorage.setItem('9x13_accessibility', JSON.stringify(this.accessibility));
   }
+
+  handleWizardCompletion() {
+    localStorage.setItem('9x13_wizard_completed', 'true');
+    this.startCloseWindow('intro');
+  }
+
 
   openWindow(windowName: string) {
     this.openWindows[windowName] = true;

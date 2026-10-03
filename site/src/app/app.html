@@ -26,20 +26,15 @@
     name="guest book"
     picture="📖"></icon>
 
+    <icon windowId="new" 
+    (iconClicked)="openWindow($event)"
+    name="updates"
+    picture="!"></icon>
+
     <icon windowId="settings" 
     (iconClicked)="openWindow($event)"
     name="settings"
     picture="⚙️"></icon>
-
-    <button class="desktop-shortcut" type="button">
-    <div class="icon-wrapper">
-        😸
-      </div>
-      <span class="icon-label">
-          <p select="icon-text"><!--# follow class="follow-frame" title="Follow on Nekoweb!" --></p>
-      </span>
-    </button>
-  
 
 </div>
   <div class="windows-layer">
@@ -52,13 +47,22 @@
       </melonharvest>
     }
 
+        @if (openWindows['new']) {
+      <new 
+        [isClosing]="closingWindows['new']"
+        (onCloseWindow)="startCloseWindow('new')"
+        (onAnimationFinished)="destroyWindow('new')">
+      </new>
+    }
+
     @if (openWindows['intro']) {
       <intro 
         [isClosing]="closingWindows['intro']"
         [accessibility]="accessibility"
-        (onToggleSetting)="toggleSetting($event)"
+        (toggleSetting)="toggleSetting($event)"
         (onCloseWindow)="startCloseWindow('intro')"
-        (onAnimationFinished)="destroyWindow('intro')">
+        (onAnimationFinished)="destroyWindow('intro')"
+        (wizardComplete)="handleWizardCompletion()">
       </intro>
     }
 
@@ -96,6 +100,7 @@
         (onAnimationFinished)="destroyWindow('guestbook')">
       </guestbook>
     }
+
 
     
 
