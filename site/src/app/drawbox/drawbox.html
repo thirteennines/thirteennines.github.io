@@ -1,0 +1,67 @@
+<window (close)="close()" (animationFinished)="animationDone()" [isClosing]="isClosing" class="sizing"> 
+  <windowtitle> 
+    <svg xmlns="http://w3.org" fill="currentColor" viewBox="0 0 24 24" style="width:16px; height:16px; margin-right:5px;"><path d="M18 22H6v-2h12v2ZM6 20H4v-2h2v2Zm14 0h-2v-2h2v2ZM4 18H2V6h2v12Zm11 0H9v-2h6v2Zm7 0h-2V6h2v12Zm-5-2h-2v-2H9v2H7v-4h10v4Zm-7-6H8V8h2v2Zm6 0h-2V8h2v2ZM6 6H4V4h2v2Zm14 0h-2V4h2v2Zm-2-2H6V2h12v2Z"/></svg>
+    paintbox
+  </windowtitle>
+  
+  <windowcontent>
+    <div class="drawbox-layout-wrapper">
+      <h1 class="drawbox-title-header">draw me a pitcher</h1>
+
+      <div class="workspace-container">
+        <div class="palette-sidebar">
+          <div (click)="changeColor('#20283D')" style="background:#20283D;" class="stroke-color"></div>
+          <div (click)="changeColor('#426E5D')" style="background:#426E5D;" class="stroke-color"></div>
+          <div (click)="changeColor('#FBF7F3')" style="background:#FBF7F3;" class="stroke-color"></div>
+          <div (click)="changeColor('#E5B083')" style="background:#E5B083;" class="stroke-color"></div>
+        </div>
+        
+        <canvas #drawCanvas 
+                id="drawboxcanvas" 
+                width="500" 
+                height="500"
+                class="canvas-board"
+                (touchstart)="start($event)" 
+                (touchmove)="draw($event)" 
+                (touchend)="stop($event)"
+                (mousedown)="start($event)" 
+                (mousemove)="draw($event)" 
+                (mouseup)="stop($event)" 
+                (mouseout)="stop($event)">
+        </canvas>
+
+        <input #sliderInput 
+               type="range" 
+               min="1" 
+               max="100" 
+               [value]="strokeWidth"
+               (input)="onSliderChange($event)" 
+               orient="vertical" 
+               class="generator-input">
+      </div>
+      
+      <div class="action-button-group">
+        <button (click)="restore()">undo</button>
+        <button (click)="clear()">clear</button>
+        <button (click)="submitDrawing()" [disabled]="isSubmitting">submit</button>
+      </div>
+      
+      <p class="status-message">{{ statusText }}</p>
+
+      <h1 class="drawbox-title-header">your drawings</h1>
+      <div id="gallery">
+        <div *ngIf="galleryImages.length === 0 && DISPLAY_IMAGES && !statusText.includes('Failed')">loading images...</div>
+        <div *ngIf="statusText.includes('Failed')">{{ statusText }}</div>
+        
+        <div *ngFor="let image of galleryImages" class="image-container">
+          <img [src]="image.url" alt="drawing">
+          <p>{{ image.timestamp }}</p>
+        </div>
+      </div>
+      
+      <div class="footer-link-box">
+          <a href="https://web.archive.org/web/20250531051211/https://drawbox.nekoweb.org/">source code for drawbox</a>
+      </div>
+    </div>
+  </windowcontent>
+</window>

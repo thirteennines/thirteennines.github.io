@@ -11,10 +11,15 @@
     name="music player"
     picture="🎶"></icon> -->
 
-     <icon windowId="about"
+    <icon windowId="about"
     (iconClicked)="openWindow($event)"
     name="system info"
     picture="🖥️"></icon>
+
+    <icon windowId="drawbox" 
+    (iconClicked)="openWindow($event)"
+    name="paint"
+    picture="🎨"></icon>
 
     <icon windowId="settings" 
     (iconClicked)="openWindow($event)"
@@ -60,6 +65,16 @@
         (onAnimationFinished)="destroyWindow('about')">
       </about>
     }
+
+    @if (openWindows['drawbox']) {
+      <drawbox 
+        [isClosing]="closingWindows['drawbox']"
+        (onCloseWindow)="startCloseWindow('drawbox')"
+        (onAnimationFinished)="destroyWindow('drawbox')">
+      </drawbox>
+    }
+
+    <!--# follow -->
 
   </div>
 </div>
